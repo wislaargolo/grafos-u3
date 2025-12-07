@@ -196,6 +196,7 @@ LocalSearchResult local_search(const std::vector<std::vector<double>>& weights,
     while(improvement_found) {
         if(improvement == ImprovementType::FIRST_IMPROVEMENT) {
             improvement_found = first_improvement_step(weights, current_path, current_cost, apply_method, is_full);
+            break;
         } else { 
             improvement_found = best_improvement_step(weights, current_path, current_cost, apply_method, is_full);
         }

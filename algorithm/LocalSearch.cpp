@@ -101,12 +101,13 @@ void undo_move(LocalSearchMethod method, std::vector<int>& path,
  * @param current_path O caminho atual
  * @param current_cost O custo atual do caminho.
  * @param apply_method A função que aplica o método de modificação no caminho
+ * @param undo_method A função que desfaz o método de modificação no caminho
  * @param is_full Indica se a vizinhança completa deve ser considerada
  * @return true se uma melhoria foi encontrada, false caso contrário
  */
-template<typename ApplyMethodFunc>
+template<typename ApplyMethodFunc, typename UndoMethodFunc>
 bool first_improvement_step(const std::vector<std::vector<double>>& weights, std::vector<int>& current_path,
-    double& current_cost, ApplyMethodFunc apply_method, bool is_full = false) {
+    double& current_cost, ApplyMethodFunc apply_method, UndoMethodFunc undo_method, bool is_full = false) {
 
     size_t path_size = current_path.size();
 
@@ -116,17 +117,18 @@ bool first_improvement_step(const std::vector<std::vector<double>>& weights, std
         for(size_t j = j_start; j < path_size; ++j) {
             if(i == j) continue;
         
-            std::vector<int> temp_path = current_path;
             //Aplica a modificação
-            apply_method(temp_path, i, j);
-            double new_cost = calculate_path_cost(weights, temp_path);
+            apply_method(current_path, i, j);
+            double new_cost = calculate_path_cost(weights, current_path);
 
             // Se é observada uma melhoria, atualiza o caminho e o custo e retorna true
             if(new_cost < current_cost) {
-                current_path = temp_path;
                 current_cost = new_cost;
                 return true;
             }
+
+            // Desfaz a modificação se não houve melhoria
+            undo_method(current_path, i, j);
         }
     }
     return false;
@@ -139,15 +141,18 @@ bool first_improvement_step(const std::vector<std::vector<double>>& weights, std
  * @param current_path O caminho atual
  * @param current_cost O custo atual do caminho
  * @param apply_method A função que aplica o método de modificação no caminho
+ * @param undo_method A função que desfaz o método de modificação no caminho
  * @return true se uma melhoria foi encontrada, false caso contrário
  */
-template<typename ApplyMethodFunc>
+template<typename ApplyMethodFunc, typename UndoMethodFunc>
 bool best_improvement_step(const std::vector<std::vector<double>>& weights, std::vector<int>& current_path,
-    double& current_cost, ApplyMethodFunc apply_method, bool is_full = false) {
+    double& current_cost, ApplyMethodFunc apply_method, UndoMethodFunc undo_method, bool is_full = false) {
 
     size_t path_size = current_path.size();
     bool improvement_found = false;
-    std::vector<int> best_path = current_path;
+
+    size_t best_i = 0;
+    size_t best_j = 0;
     double best_cost = current_cost;
 
     // Percorre toda a vizinhança para encontrar a melhor melhoria
@@ -156,23 +161,26 @@ bool best_improvement_step(const std::vector<std::vector<double>>& weights, std:
         for(size_t j = j_start; j < path_size; ++j) {
             if(i == j) continue;
 
-            std::vector<int> temp_path = current_path;
             //Aplica a modificação
-            apply_method(temp_path, i, j);
-            double new_cost = calculate_path_cost(weights, temp_path);
+            apply_method(current_path, i, j);
+            double new_cost = calculate_path_cost(weights, current_path);
 
             // Se é observada uma melhoria, atualiza a melhor solução encontrada
             if(new_cost < best_cost) {
-                best_path = temp_path;
+                best_i = i;
+                best_j = j;
                 best_cost = new_cost;
                 improvement_found = true;
             }
+
+            // Desfaz a modificação para continuar a busca
+            undo_method(current_path, i, j);
         }
     }
 
     // Se uma melhoria foi encontrada, atualiza o caminho e o custo atuais
     if(improvement_found) {
-        current_path = best_path;
+        apply_method(current_path, best_i, best_j);
         current_cost = best_cost;
     }
 
@@ -192,13 +200,17 @@ LocalSearchResult local_search(const std::vector<std::vector<double>>& weights,
         apply_move(method, path, i, j);
     };
 
+    // Define a função de desfazer o método baseado no tipo selecionado
+    auto undo_method = [&](std::vector<int>& path, size_t i, size_t j) {
+        undo_move(method, path, i, j);
+    };
+
     // Executa a busca local até que nenhuma melhoria seja encontrada
     while(improvement_found) {
         if(improvement == ImprovementType::FIRST_IMPROVEMENT) {
-            improvement_found = first_improvement_step(weights, current_path, current_cost, apply_method, is_full);
-            break;
+            improvement_found = first_improvement_step(weights, current_path, current_cost, apply_method, undo_method, is_full);
         } else { 
-            improvement_found = best_improvement_step(weights, current_path, current_cost, apply_method, is_full);
+            improvement_found = best_improvement_step(weights, current_path, current_cost, apply_method, undo_method, is_full);
         }
     }
 

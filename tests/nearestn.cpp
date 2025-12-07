@@ -14,12 +14,19 @@
 int main() {
 
     std::vector<std::string> files = {
-        "data/problem_1_2.csv",
-        "data/problem_3_4.csv",
-        "data/problem_5_6.csv",
-        "data/problem_7_8.csv",
-        "data/problem_9_10.csv",
-        "data/problem_11_12.csv"
+        "data/problem_1.csv",
+        "data/problem_2.csv",
+        "data/problem_3.csv",
+        "data/problem_4.csv",
+        "data/problem_5.csv",
+        "data/problem_6.csv",
+        "data/problem_7.csv",
+        "data/problem_8.csv",
+        "data/problem_9.csv",
+        "data/problem_10.csv",
+        "data/problem_11.csv",
+        "data/problem_12.csv",
+        "data/small_example.csv"
     };
 
     std::ofstream output("result/nearestn_results.txt");

@@ -2,6 +2,7 @@
 #define LOCALSEARCH_H
 
 #include <vector>
+#include <string>
 
 /**
  * @brief Estrutura para armazenar o resultado da busca local
@@ -30,7 +31,6 @@ enum class ImprovementType {
     FIRST_IMPROVEMENT,
     BEST_IMPROVEMENT
 };
-
 
 LocalSearchResult local_search(const std::vector<std::vector<double>>& weights,
                                const std::vector<int>& initial_path,

@@ -55,7 +55,7 @@ int main() {
         output << "\nResults for file: " << filename << "\n";
 
         //Nearest Neighbor without Local Search
-        auto nn_path = nearest_neighbor(graph, weights, start_index);
+        auto nn_path = nearest_neighbor(graph.get_order(), weights, start_index);
         double nn_cost = calculate_path_cost(weights, nn_path);
 
         output << "[Nearest Neighbor without Local Search]\n";

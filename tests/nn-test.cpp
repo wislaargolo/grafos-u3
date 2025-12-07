@@ -38,17 +38,14 @@ int main() {
     std::cout << "Applying Local Search...\n";
     std::cout << "SWAP with BEST_IMPROVEMENT\n";
     auto result = nearest_neighbor_local_search(graph, weights, 0, LocalSearchMethod::SWAP, ImprovementType::BEST_IMPROVEMENT);
-    print_tsp_result(result);
+    print_tsp_result(graph, result);
 
     std::cout << "\nSHIFT with FIRST_IMPROVEMENT\n";
     result = nearest_neighbor_local_search(graph, weights, 0, LocalSearchMethod::SHIFT, ImprovementType::FIRST_IMPROVEMENT);
-    print_tsp_result(result);
-
+    print_tsp_result(graph, result);
     std::cout << "\nINVERT with BEST_IMPROVEMENT\n";
     result = nearest_neighbor_local_search(graph, weights, 0, LocalSearchMethod::INVERT, ImprovementType::BEST_IMPROVEMENT);
-    print_tsp_result(result);   
-
-
+    print_tsp_result(graph, result);   
 
     return 0;
 }

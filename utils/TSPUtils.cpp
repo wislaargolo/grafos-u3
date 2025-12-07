@@ -2,6 +2,7 @@
 
 #include <limits>
 #include <cstddef>
+#include <string>
 
 double calculate_path_cost(const std::vector<std::vector<double>>& weights, const std::vector<int>& path) {
     double total_cost = 0.0;
@@ -23,4 +24,21 @@ double calculate_path_cost(const std::vector<std::vector<double>>& weights, cons
     total_cost += weights[path[path_size - 1]][path[0]];
 
     return total_cost;
+}
+
+std::string method_to_string(LocalSearchMethod m) {
+    switch (m) {
+        case LocalSearchMethod::SWAP:   return "SWAP";
+        case LocalSearchMethod::SHIFT:  return "SHIFT";
+        case LocalSearchMethod::INVERT: return "INVERT";
+    }
+    return "UNKNOWN";
+}
+
+std::string improvement_to_string(ImprovementType t) {
+    switch (t) {
+        case ImprovementType::FIRST_IMPROVEMENT: return "FIRST_IMPROVEMENT";
+        case ImprovementType::BEST_IMPROVEMENT:  return "BEST_IMPROVEMENT";
+    }
+    return "UNKNOWN";
 }

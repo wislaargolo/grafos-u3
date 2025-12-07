@@ -3,15 +3,14 @@
 
 #include <vector>
 #include <iostream>
+#include "../graph/IGraph.h"
 
 /**
  * @brief Estrutura para armazenar o resultado final de uma solução do problema do caixeiro viajante
- * @tparam Node O tipo de dado dos nós no caminho
  */
-template<typename Node>
 struct TSPResult
 {
-    std::vector<Node> path; // Caminho percorrido
+    std::vector<int> path; // Caminho percorrido
     double cost; // Custo total do caminho
 
     TSPResult() : cost(0.0) {}
@@ -23,10 +22,10 @@ struct TSPResult
  * @param result O resultado do TSP a ser impresso
  */
 template<typename Node>
-void print_tsp_result(const TSPResult<Node>& result) {
+void print_tsp_result(const IGraph<Node>& graph, const TSPResult& result) {
     std::cout << "TSP Path: ";
     for (const auto& node : result.path) {
-        std::cout << node << " ";
+        std::cout << graph.get_node(node) << " ";
     }
     std::cout << "\nTotal Cost: " << result.cost << std::endl;
 }

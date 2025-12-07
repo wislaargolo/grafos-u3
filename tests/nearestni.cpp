@@ -35,7 +35,7 @@ int main() {
         return 1;
     }
 
-    int start_index = 0; // Índice do nó inicial para o percurso
+    int start_node = 1;
 
     std::vector<LocalSearchMethod> methods = {
         LocalSearchMethod::SWAP,
@@ -62,14 +62,14 @@ int main() {
         output << "\nResults for file: " << filename << "\n";
 
         //Nearest Insertion without Local Search
-        auto nn_path = nearest_insertion(graph.get_order(), weights, start_index);
+        auto nn_path = nearest_insertion(graph, weights, start_node);
         double nn_cost = calculate_path_cost(weights, nn_path);
 
         output << "[Nearest Insertion without Local Search]\n";
         output << "Cost: " << nn_cost << "\n";
         output << "Path: ";
         for (const auto& node : nn_path) {
-            output << node << " ";
+            output << graph.get_node(node) << " ";
         }
         output << "\n";
 
@@ -77,14 +77,14 @@ int main() {
         output << "[Nearest Insertion with Local Search]\n";
         for(const auto& method : methods) {
             for(const auto& improvement : improvements) {
-                auto result = nearest_insertion_local_search(graph, weights, start_index, method, improvement);
+                auto result = nearest_insertion_local_search(graph, weights, start_node, method, improvement);
 
                 output << "Method: " << method_to_string(method)
                        << ", Improvement: " << improvement_to_string(improvement) << "\n";
                 output << "Cost: " << result.cost << "\n";
                 output << "Path: ";
                 for (const auto& node : result.path) {
-                    output << node << " ";
+                    output << graph.get_node(node) << " ";
                 }
                 output << "\n";
             }

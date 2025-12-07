@@ -26,8 +26,8 @@ double calculate_path_cost(const std::vector<std::vector<double>>& weights, cons
     return total_cost;
 }
 
-std::string method_to_string(LocalSearchMethod m) {
-    switch (m) {
+std::string method_to_string(LocalSearchMethod method) {
+    switch (method) {
         case LocalSearchMethod::SWAP:   return "SWAP";
         case LocalSearchMethod::SHIFT:  return "SHIFT";
         case LocalSearchMethod::INVERT: return "INVERT";
@@ -35,8 +35,8 @@ std::string method_to_string(LocalSearchMethod m) {
     return "UNKNOWN";
 }
 
-std::string improvement_to_string(ImprovementType t) {
-    switch (t) {
+std::string improvement_to_string(ImprovementType type) {
+    switch (type) {
         case ImprovementType::FIRST_IMPROVEMENT: return "FIRST_IMPROVEMENT";
         case ImprovementType::BEST_IMPROVEMENT:  return "BEST_IMPROVEMENT";
     }

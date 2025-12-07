@@ -1,5 +1,7 @@
 #include <vector>
 #include <limits>
+#include <utility>
+#include <cstddef>
 
 
 #include "../graph/IGraph.h"

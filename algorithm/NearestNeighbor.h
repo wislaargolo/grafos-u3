@@ -4,6 +4,8 @@
 #include <vector>
 #include <limits>
 #include <algorithm>
+#include <utility>
+#include <cstddef>
 
 #include "../graph/IGraph.h"
 #include "TSPResult.h"

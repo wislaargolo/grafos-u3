@@ -2,6 +2,8 @@
 #include <limits>
 #include <cstddef>
 
+#include "NearestInsertion.h"
+
 std::vector<int> nearest_insertion(const size_t graph_order, 
     const std::vector<std::vector<double>>& weights, int start_index) {
 
@@ -53,6 +55,10 @@ std::vector<int> nearest_insertion(const size_t graph_order,
                     best_position = next_position;
                 }
             }
+        }
+
+        if(best_node == -1) {
+            break; // Nenhum nó encontrado, encerra o loop
         }
 
         // Insere o melhor nó encontrado na melhor posição

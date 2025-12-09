@@ -49,13 +49,10 @@ void apply_shift(std::vector<int>& path, size_t i, size_t j) {
  * @param j O índice final da sublista a ser invertida
  */
 void apply_invert(std::vector<int>& path, size_t i, size_t j) {
-    // Garante que i é menor que j
-    if(i > j) {
-        std::swap(i, j);
-    }
-
     // Inverte a sublista entre os índices i e j
-    std::reverse(path.begin() + i, path.begin() + j + 1);
+    if(i < j) {
+        std::reverse(path.begin() + i, path.begin() + j + 1);
+    }
 }
 
 /**
@@ -75,20 +72,6 @@ void apply_move(LocalSearchMethod method, std::vector<int>& path,
             break;
     }
 } 
-
-/**
- * @brief Desfaz o método de modificação selecionado no caminho -- ainda nao sei se usamos
- */
-void undo_move(LocalSearchMethod method, std::vector<int>& path,
-                std::size_t i, std::size_t j) {
-    // Para swap e invert, a operação é sua própria inversa
-    if(method == LocalSearchMethod::SWAP || method == LocalSearchMethod::INVERT) {
-        apply_move(method, path, i, j);
-    } else if(method == LocalSearchMethod::SHIFT) {
-        // Para shift, inverte os índices para desfazer a operação
-        apply_shift(path, j, i);
-    }
-}
 
 
 /**

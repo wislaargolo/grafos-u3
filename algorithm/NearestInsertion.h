@@ -62,8 +62,7 @@ std::vector<int> nearest_insertion(const IGraph<Node>& graph,
 
             for (size_t position = 0; position < path.size(); position++) {
                 size_t next_position = (position + 1) % path.size();
-                double increase = weights[path[position]][node] + 
-                                weights[node][path[next_position]] -
+                double increase = weights[path[position]][node] +  weights[node][path[next_position]] -
                                 weights[path[position]][path[next_position]];
 
                 if (increase < best_increase) {
@@ -106,7 +105,7 @@ TSPResult nearest_insertion_local_search(const IGraph<Node>& graph,
 
     TSPResult result;
     result.cost = local_search_result.cost;
-    result.path = std::move(local_search_result.solution);
+    result.path = local_search_result.solution;
 
     return result;
 }

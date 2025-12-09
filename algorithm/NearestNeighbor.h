@@ -80,7 +80,7 @@ TSPResult nearest_neighbor_local_search(const IGraph<Node>& graph,
 
     TSPResult result;
     result.cost = local_search_result.cost;
-    result.path = std::move(local_search_result.solution);
+    result.path = local_search_result.solution;
 
     return result;
 }

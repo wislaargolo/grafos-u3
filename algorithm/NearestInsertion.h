@@ -21,6 +21,7 @@ std::vector<int> nearest_insertion(const IGraph<Node>& graph,
     const std::vector<std::vector<double>>& weights, Node start_node) {
 
     int start_index = graph.get_index(start_node);
+
     size_t graph_order = graph.get_order();
 
     std::vector<bool> in_path(graph_order, false);
@@ -62,8 +63,8 @@ std::vector<int> nearest_insertion(const IGraph<Node>& graph,
             for (size_t position = 0; position < path.size(); position++) {
                 size_t next_position = (position + 1) % path.size();
                 double increase = weights[path[position]][node] + 
-                                  weights[node][path[next_position]] - 
-                                  weights[path[position]][path[next_position]];
+                                weights[node][path[next_position]] -
+                                weights[path[position]][path[next_position]];
 
                 if (increase < best_increase) {
                     best_increase = increase;

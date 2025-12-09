@@ -24,10 +24,6 @@ void apply_swap(std::vector<int>& path, size_t i, size_t j) {
  * @param j O índice para onde o nó será movido
  */
 void apply_shift(std::vector<int>& path, size_t i, size_t j) {
-    // Se os indices sao iguais, não é precisso fazer nada
-    if(i == j) {
-        return;
-    }
 
     // Se i é menor que j, move o elemento de i para j deslocando os outros para a esquerda
     if(i < j) {
@@ -115,8 +111,10 @@ bool first_improvement_step(const std::vector<std::vector<double>>& weights, std
     for(size_t i = 1; i < path_size; ++i) {
         size_t j_start = is_full ? 1 : i + 1;
         for(size_t j = j_start; j < path_size; ++j) {
-            if(i == j) continue;
-        
+            
+            if(i == j) {
+                continue;
+            }
             //Aplica a modificação
             apply_method(current_path, i, j);
             double new_cost = calculate_path_cost(weights, current_path);

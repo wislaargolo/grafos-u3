@@ -110,7 +110,9 @@ bool first_improvement_step(const std::vector<std::vector<double>>& weights, std
     for(size_t i = 1; i < path_size; ++i) {
         size_t j_start = is_full ? 1 : i + 1;
         for(size_t j = j_start; j < path_size; ++j) {
-            if(i == j) continue;
+            if(i == j) {
+                continue;
+            }
         
             std::vector<int> temp_path = current_path;
             //Aplica a modificação
@@ -150,8 +152,9 @@ bool best_improvement_step(const std::vector<std::vector<double>>& weights, std:
     for(size_t i = 1; i < path_size; ++i) {
         size_t j_start = is_full ? 1 : i + 1;
         for(size_t j = j_start; j < path_size; ++j) {
-            if(i == j) continue;
-
+            if(i == j) {
+                continue;
+            }
             std::vector<int> temp_path = current_path;
             //Aplica a modificação
             apply_method(temp_path, i, j);

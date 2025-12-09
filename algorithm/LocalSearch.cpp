@@ -24,10 +24,6 @@ void apply_swap(std::vector<int>& path, size_t i, size_t j) {
  * @param j O índice para onde o nó será movido
  */
 void apply_shift(std::vector<int>& path, size_t i, size_t j) {
-    // Se os indices sao iguais, não é precisso fazer nada
-    if(i == j) {
-        return;
-    }
 
     // Se i é menor que j, move o elemento de i para j deslocando os outros para a esquerda
     if(i < j) {

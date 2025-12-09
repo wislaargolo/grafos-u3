@@ -10,8 +10,8 @@
  */
 struct TSPResult
 {
-    std::vector<int> path; // Caminho percorrido
-    double cost; // Custo total do caminho
+    std::vector<int> path; // Caminho percorrido em índices
+    double cost; // Custo total obtido
 
     TSPResult() : cost(0.0) {}
 };

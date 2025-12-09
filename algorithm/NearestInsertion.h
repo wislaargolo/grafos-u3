@@ -10,11 +10,11 @@
 #include "LocalSearch.h"
 
 /**
- * @brief Implementa o algoritmo da inserção mais próxima para o problema do caixeiro viajante
+ * @brief Implementa o algoritmo da inserção mais próxima
  * @param graph O grafo para aplicação do algoritmo
  * @param weights A matriz de pesos
- * @param start_node O nó inicial para o percurso
- * @return Um vetor com a ordem dos índices dos nós visitados no percurso
+ * @param start_node O nó inicial
+ * @return a ordem dos índices dos nós visitados no percurso
  */
 template<typename Node>
 std::vector<int> nearest_insertion(const IGraph<Node>& graph,
@@ -27,11 +27,11 @@ std::vector<int> nearest_insertion(const IGraph<Node>& graph,
     std::vector<bool> in_path(graph_order, false);
     std::vector<int> path;
 
-    // Adiciona o nó inicial ao caminho
+    // Adiciona o nó inicial a rota
     path.push_back(start_index);
     in_path[start_index] = true;
 
-    // Adiciona o nó mais próximo do nó inicial ao caminho
+    // Adiciona o nó mais próximo do nó inicial a rota
     double min_distance = std::numeric_limits<double>::infinity();
     int nearest_index = -1;
 
@@ -46,19 +46,21 @@ std::vector<int> nearest_insertion(const IGraph<Node>& graph,
     if(nearest_index == -1) {
         return path; // Retorna apenas o nó inicial se nenhum outro nó for encontrado
     }
-    // Insere o nó mais próximo do inicial no caminho
+    // Insere o nó mais próximo do inicial na rota
     path.push_back(nearest_index);
     in_path[nearest_index] = true;
 
-    // Enquanto existirem nós não inseridos no caminho
+    // Enquanto existirem nós não inseridos na rota
     while (path.size() < graph_order) {
         double best_increase = std::numeric_limits<double>::infinity();
         int best_node = -1;
         size_t best_position = 0;
 
         for (size_t node = 0; node < graph_order; node++) {
-            //Para cada nó não inserido no caminho
-            if (in_path[node]) continue;
+            //Para cada nó não inserido na rota
+            if (in_path[node]) {
+                continue;
+            }
 
             for (size_t position = 0; position < path.size(); position++) {
                 size_t next_position = (position + 1) % path.size();
@@ -89,8 +91,8 @@ std::vector<int> nearest_insertion(const IGraph<Node>& graph,
 /**
  * @brief Combina o algoritmo da inserção mais próxima com busca local
  * @tparam Node O tipo de dado dos nós no grafo
- * @param start_node O nó inicial para o percurso
- * @param graph O grafo para aplicação do algoritmo
+ * @param start_node O nó inicial
+ * @param graph O grafo
  * @param weights A matriz de pesos
  */
 template<typename Node>

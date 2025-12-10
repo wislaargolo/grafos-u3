@@ -4,7 +4,7 @@
 #include <vector>
 #include<random>
 #include "../graph/IGraph.h"
-#include "NearestInsertion.h"
+#include "CheapestInsertion.h"
 #include "NearestNeighbor.h"
 
 struct GeneticSolution {
@@ -25,7 +25,6 @@ std::vector<int> generate_random_path(int order) {
     return path;
 }
 
-template<typename Node>
 double calculate_path_cost(const std::vector<std::vector<double>>& weights,
     const std::vector<int>& path) {
 
@@ -47,14 +46,14 @@ std::vector<std::vector<int>> generate_population(const IGraph<Node>& graph,
 
     std::vector<std::vector<int>> population;
 
-    std::vector<int> nearest_insertion_result = nearest_insertion(graph, weights, start_node);
+    std::vector<int> cheapest_insertion_result = cheapest_insertion(graph, weights, start_node);
     std::vector<int> nearest_neighbor_result = nearest_neighbor(graph, weights, start_node);
 
-    population.push_back(nearest_insertion_result);
+    population.push_back(cheapest_insertion_result);
     population.push_back(nearest_neighbor_result);
 
     for (size_t i = 2; i < 10; i++) {
-        std::vector<int> random_path = generate_random_path(graph);
+        std::vector<int> random_path = generate_random_path(graph.get_order());
         population.push_back(random_path);
     }
 

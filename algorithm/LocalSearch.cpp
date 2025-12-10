@@ -90,7 +90,7 @@ bool first_improvement_step(const std::vector<std::vector<double>>& weights, std
     size_t path_size = current_path.size();
 
     // Percorre a vizinhança em busca da primeira melhoria
-    for(size_t i = 1; i < path_size; i++) {
+    for(size_t i = 0; i < path_size; i++) {
         size_t j_start = is_full ? 1 : i + 1;
         for(size_t j = j_start; j < path_size; j++) {
             if(i == j) {
@@ -132,7 +132,7 @@ bool best_improvement_step(const std::vector<std::vector<double>>& weights, std:
     double best_cost = current_cost;
 
     // Percorre toda a vizinhança para encontrar a melhor melhoria
-    for(size_t i = 1; i < path_size; i++) {
+    for(size_t i = 0; i < path_size; i++) {
         size_t j_start = is_full ? 1 : i + 1;
         for(size_t j = j_start; j < path_size; j++) {
             if(i == j) {

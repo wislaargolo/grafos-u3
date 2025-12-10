@@ -6,7 +6,7 @@
 
 #include "../graph/DirectedAdjacencyListGraph.h"
 #include "../utils/GraphIO.h"
-#include "../algorithm/NearestInsertion.h"
+#include "../algorithm/CheapestInsertion.h"
 #include "../algorithm/LocalSearch.h"
 #include "../algorithm/TSPResult.h"
 #include "../utils/TSPUtils.h"
@@ -29,7 +29,7 @@ int main() {
         "data/small_example.csv"
     };
 
-    std::ofstream output("result/nearesti_results.txt");
+    std::ofstream output("result/cheapestinsertion_results.txt");
     if(!output.is_open()) {
         std::cerr << "Could not open output file for writing results.\n";
         return 1;
@@ -61,11 +61,11 @@ int main() {
 
         output << "\nResults for file: " << filename << "\n";
 
-        //Nearest Insertion without Local Search
-        auto nn_path = nearest_insertion(graph, weights, start_node);
+        //Cheapest Insertion without Local Search
+        auto nn_path = cheapest_insertion(graph, weights, start_node);
         double nn_cost = calculate_path_cost(weights, nn_path);
 
-        output << "[Nearest Insertion without Local Search]\n";
+        output << "[Cheapest Insertion without Local Search]\n";
         output << "Cost: " << nn_cost << "\n";
         output << "Path: ";
         for (const auto& node : nn_path) {
@@ -73,11 +73,11 @@ int main() {
         }
         output << "\n";
 
-        //Nearest Neighbor with Local Search
-        output << "[Nearest Insertion with Local Search]\n";
+        //Cheapest Insertion with Local Search
+        output << "[Cheapest Insertion with Local Search]\n";
         for(const auto& method : methods) {
             for(const auto& improvement : improvements) {
-                auto result = nearest_insertion_local_search(graph, weights, start_node, method, improvement);
+                auto result = cheapest_insertion_local_search(graph, weights, start_node, method, improvement);
 
                 output << "Method: " << method_to_string(method)
                        << ", Improvement: " << improvement_to_string(improvement) << "\n";
@@ -93,7 +93,7 @@ int main() {
     }
 
     output.close();
-    std::cout << "Nearest Insertion tests completed. Results written to 'result/nearesti_results.txt'.\n";
+    std::cout << "Cheapest Insertion tests completed. Results written to 'result/cheapestinsertion_results.txt'.\n";
 
     return 0;
 }

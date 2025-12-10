@@ -1,3 +1,7 @@
+#ifndef CHEAPESTINSERTION_H
+#define CHEAPESTINSERTION_H
+
+
 #include <vector>
 #include <limits>
 #include <utility>
@@ -10,14 +14,14 @@
 #include "LocalSearch.h"
 
 /**
- * @brief Implementa o algoritmo da inserção mais próxima
+ * @brief Implementa o algoritmo da inserção mais barata
  * @param graph O grafo para aplicação do algoritmo
  * @param weights A matriz de pesos
  * @param start_node O nó inicial
  * @return a ordem dos índices dos nós visitados no percurso
  */
 template<typename Node>
-std::vector<int> nearest_insertion(const IGraph<Node>& graph,
+std::vector<int> cheapest_insertion(const IGraph<Node>& graph,
     const std::vector<std::vector<double>>& weights, Node start_node) {
 
     int start_index = graph.get_index(start_node);
@@ -96,12 +100,12 @@ std::vector<int> nearest_insertion(const IGraph<Node>& graph,
  * @param weights A matriz de pesos
  */
 template<typename Node>
-TSPResult nearest_insertion_local_search(const IGraph<Node>& graph,
+TSPResult cheapest_insertion_local_search(const IGraph<Node>& graph,
     const std::vector<std::vector<double>>& weights, Node start_node, 
     LocalSearchMethod method, ImprovementType improvement) {
 
 
-    std::vector<int> initial_path = nearest_insertion(graph, weights, start_node);
+    std::vector<int> initial_path = cheapest_insertion(graph, weights, start_node);
 
     LocalSearchResult local_search_result = local_search(weights, initial_path, method, improvement);
 
@@ -111,3 +115,5 @@ TSPResult nearest_insertion_local_search(const IGraph<Node>& graph,
 
     return result;
 }
+
+#endif

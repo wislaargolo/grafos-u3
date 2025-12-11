@@ -19,11 +19,10 @@ struct GeneticSolution {
   double cost;
 };
 
-template<typename Node>
-std::vector<int> generate_random_path(int order) {
+std::vector<int> generate_random_path(size_t order) {
     std::vector<int> path(order);
 
-    for (int i = 0; i < order; i++) {
+    for (size_t i = 0; i < order; i++) {
         path[i] = i;
     }
 
@@ -49,12 +48,12 @@ double calculate_path_cost(const std::vector<std::vector<double>>& weights,
 
 template<typename Node>
 std::vector<std::vector<int>> generate_population(const IGraph<Node>& graph,
-    const std::vector<std::vector<double>>& weights, Node start_node) {
+    const std::vector<std::vector<double>>& weights) {
 
     std::vector<std::vector<int>> population;
 
-    std::vector<int> cheapest_insertion_result = cheapest_insertion(graph, weights, start_node);
-    std::vector<int> nearest_neighbor_result = nearest_neighbor(graph, weights, start_node);
+    std::vector<int> cheapest_insertion_result = cheapest_insertion(graph, weights, graph.get_node(0));
+    std::vector<int> nearest_neighbor_result = nearest_neighbor(graph, weights, graph.get_node(0));
 
     population.push_back(cheapest_insertion_result);
     population.push_back(nearest_neighbor_result);
@@ -81,7 +80,7 @@ int select_random_parent(const std::vector<double>& fitness_scores) {
     double random = distribution(gen);
     total = 0;
 
-    for (int i = 0; i < fitness_scores.size(); i++) {
+    for (size_t i = 0; i < fitness_scores.size(); i++) {
         total += fitness_scores[i];
 
         if (total >= random) {
@@ -271,19 +270,19 @@ std::vector<std::vector<int>> renovation_elitism(
 
 template<typename Node>
 std::vector<int> genetic_search(const IGraph<Node>& graph,
-    const std::vector<std::vector<double>>& weights, Node start_node) {
+    const std::vector<std::vector<double>>& weights) {
 
-    std::vector<std::vector<int>> population = generate_population(graph, weights, start_node);
+    std::vector<std::vector<int>> population = generate_population(graph, weights);
 
     std::vector<double> fitness_scores(population.size(), 0.0);
 
-    for (std::vector<int>& path) {
-        fitness_scores[i] = 1 / calculate_path_cost(weights, path);
+    for (size_t i = 0; i < population.size(); i++) {
+        fitness_scores[i] = 1 / calculate_path_cost(weights, population[i]);
     }
 
     int stagnant_count = 0;
-    int best_solution_cost = INFINITY;
-    std::vector<int>& best_solution;
+    double best_solution_cost = INFINITY;
+    std::vector<int> best_solution;
 
     for (int i = 0; i < MAX_ITERATIONS_NUMBER; i++) {
         int parent_a_index = select_random_parent(fitness_scores);

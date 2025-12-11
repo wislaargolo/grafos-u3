@@ -1,0 +1,403 @@
+
+Results for file: data/problem_1.csv
+[Cheapest Insertion without Local Search]
+Cost: 2348.7
+Path: 21 23 3 4 41 44 45 18 15 28 6 27 30 2 24 29 43 14 46 5 11 1 10 12 36 48 40 25 31 7 19 34 39 35 42 26 32 16 33 20 17 37 47 13 38 22 9 8 
+Time: 0.036378
+[Cheapest Insertion with Local Search]
+Method: SWAP, Improvement: FIRST_IMPROVEMENT
+Cost: 2244.1
+Path: 1 23 3 4 41 44 45 18 15 28 27 6 30 2 24 29 43 14 46 5 11 10 21 22 36 48 40 25 31 7 17 33 39 35 42 26 32 16 34 19 20 37 47 13 38 12 9 8 
+Time: 0.283117
+Method: SWAP, Improvement: BEST_IMPROVEMENT
+Cost: 2244.1
+Path: 1 23 3 4 41 44 45 18 15 28 27 6 30 2 24 29 43 14 46 5 11 10 21 22 36 48 40 25 31 7 17 33 39 35 42 26 32 16 34 19 20 37 47 13 38 12 9 8 
+Time: 0.449657
+Method: SHIFT, Improvement: FIRST_IMPROVEMENT
+Cost: 2232
+Path: 3 4 41 44 45 18 15 28 27 6 30 21 1 2 24 29 43 14 46 5 11 10 12 22 48 40 36 25 31 7 17 33 39 35 42 26 32 16 34 19 20 37 47 13 38 9 8 23 
+Time: 1.1699
+Method: SHIFT, Improvement: BEST_IMPROVEMENT
+Cost: 2240.5
+Path: 3 4 41 44 45 18 15 28 27 6 30 21 23 2 24 29 43 14 46 5 11 10 12 22 48 40 36 25 31 17 7 19 34 39 35 42 26 32 16 33 20 37 47 13 38 9 8 1 
+Time: 0.99337
+Method: INVERT, Improvement: FIRST_IMPROVEMENT
+Cost: 2198.8
+Path: 9 22 36 48 40 25 31 7 19 34 16 32 26 42 35 39 33 17 20 37 47 13 38 12 10 1 11 2 24 29 43 14 46 5 41 44 45 18 15 28 27 6 30 4 3 23 21 8 
+Time: 0.300269
+Method: INVERT, Improvement: BEST_IMPROVEMENT
+Cost: 2176.1
+Path: 21 30 6 27 28 15 18 45 44 41 4 3 23 2 24 29 43 14 46 5 11 1 10 12 38 13 47 37 20 17 33 39 35 42 26 32 16 34 19 7 31 25 40 48 36 22 9 8 
+Time: 0.362184
+
+Results for file: data/problem_2.csv
+[Cheapest Insertion without Local Search]
+Cost: 2339
+Path: 1 23 4 3 2 30 6 27 44 28 15 18 45 41 5 11 10 12 9 22 48 25 36 31 7 19 34 26 42 32 16 39 35 47 29 46 14 43 24 13 37 38 33 20 17 40 21 8 
+Time: 0.034764
+[Cheapest Insertion with Local Search]
+Method: SWAP, Improvement: FIRST_IMPROVEMENT
+Cost: 2325
+Path: 1 2 3 4 23 30 6 27 44 28 15 18 45 41 5 11 10 12 9 22 48 25 36 31 7 19 34 26 42 32 16 39 35 47 29 46 14 43 24 13 37 38 20 33 17 40 21 8 
+Time: 0.152224
+Method: SWAP, Improvement: BEST_IMPROVEMENT
+Cost: 2329
+Path: 1 23 2 3 4 30 6 27 44 28 15 18 45 41 5 11 10 12 9 22 48 25 36 31 7 19 34 26 42 32 16 39 35 47 29 46 14 43 24 13 37 38 20 33 17 40 21 8 
+Time: 0.180496
+Method: SHIFT, Improvement: FIRST_IMPROVEMENT
+Cost: 2270
+Path: 1 23 4 3 2 30 6 27 44 28 15 18 45 41 5 11 10 12 9 22 48 25 36 31 7 19 33 34 16 32 26 42 35 39 47 24 29 46 14 43 13 37 38 20 17 40 21 8 
+Time: 0.672472
+Method: SHIFT, Improvement: BEST_IMPROVEMENT
+Cost: 2295
+Path: 1 23 4 3 2 30 6 27 44 28 15 18 45 41 5 11 10 12 9 22 48 25 36 31 7 19 34 26 42 32 16 33 35 39 47 24 29 46 14 43 13 37 38 20 17 40 21 8 
+Time: 0.443596
+Method: INVERT, Improvement: FIRST_IMPROVEMENT
+Cost: 2060
+Path: 9 12 11 10 38 20 33 17 25 40 48 22 36 31 7 19 34 16 32 26 42 35 39 47 37 13 24 29 43 14 46 5 41 45 18 15 28 44 27 6 30 21 23 4 3 2 1 8 
+Time: 0.751469
+Method: INVERT, Improvement: BEST_IMPROVEMENT
+Cost: 2085
+Path: 1 9 12 10 11 2 3 4 23 30 6 27 44 28 15 18 45 41 5 46 14 43 29 24 13 37 47 39 35 42 26 32 16 34 33 20 38 48 40 25 17 19 7 31 36 22 21 8 
+Time: 1.03448
+
+Results for file: data/problem_3.csv
+[Cheapest Insertion without Local Search]
+Cost: 2007.5
+Path: 21 23 3 4 30 27 6 28 15 18 2 24 29 14 5 11 1 10 12 13 20 17 33 16 32 35 26 34 19 7 31 25 36 22 9 8 
+Time: 0.015839
+[Cheapest Insertion with Local Search]
+Method: SWAP, Improvement: FIRST_IMPROVEMENT
+Cost: 1890.4
+Path: 21 23 3 4 30 6 27 28 15 18 14 29 24 5 11 2 1 10 12 13 20 17 33 16 32 35 26 34 19 7 31 25 36 22 9 8 
+Time: 0.093184
+Method: SWAP, Improvement: BEST_IMPROVEMENT
+Cost: 1942.7
+Path: 21 23 3 4 30 6 27 28 15 18 5 14 29 24 2 11 1 10 12 13 20 17 33 16 32 35 26 34 19 7 31 25 36 22 9 8 
+Time: 0.104415
+Method: SHIFT, Improvement: FIRST_IMPROVEMENT
+Cost: 1810.2
+Path: 23 3 4 30 6 27 28 15 18 14 5 11 2 1 10 12 29 24 13 35 33 16 32 26 34 19 20 17 7 31 25 36 22 21 9 8 
+Time: 0.226502
+Method: SHIFT, Improvement: BEST_IMPROVEMENT
+Cost: 1818.7
+Path: 23 3 4 30 6 27 28 15 18 14 5 11 2 1 10 12 29 24 13 20 33 16 32 35 26 34 19 7 17 31 25 36 22 21 9 8 
+Time: 0.359229
+Method: INVERT, Improvement: FIRST_IMPROVEMENT
+Cost: 1849.8
+Path: 21 30 6 27 28 15 18 14 29 24 5 11 2 3 4 23 1 10 12 13 20 17 33 16 32 35 26 34 19 7 31 25 36 22 9 8 
+Time: 0.101269
+Method: INVERT, Improvement: BEST_IMPROVEMENT
+Cost: 1802.9
+Path: 21 30 6 27 28 15 18 4 3 23 2 1 12 10 11 5 14 29 24 13 20 17 33 16 32 35 26 34 19 7 31 25 36 22 9 8 
+Time: 0.23631
+
+Results for file: data/problem_4.csv
+[Cheapest Insertion without Local Search]
+Cost: 1932
+Path: 1 23 18 15 28 27 6 30 4 3 2 13 24 29 14 5 11 10 12 9 22 36 25 31 17 33 16 34 35 26 32 19 7 20 21 8 
+Time: 0.015759
+[Cheapest Insertion with Local Search]
+Method: SWAP, Improvement: FIRST_IMPROVEMENT
+Cost: 1910
+Path: 1 23 18 15 28 27 6 30 4 3 2 13 24 29 14 5 11 10 12 9 22 36 31 25 17 34 16 33 35 26 32 19 7 20 21 8 
+Time: 0.076603
+Method: SWAP, Improvement: BEST_IMPROVEMENT
+Cost: 1910
+Path: 1 23 18 15 28 27 6 30 4 3 2 13 24 29 14 5 11 10 12 9 22 36 31 25 17 34 16 33 35 26 32 19 7 20 21 8 
+Time: 0.080059
+Method: SHIFT, Improvement: FIRST_IMPROVEMENT
+Cost: 1902
+Path: 1 23 18 15 28 27 6 30 4 3 2 13 24 29 14 5 11 10 12 9 22 36 31 25 17 7 34 16 33 35 26 32 19 20 21 8 
+Time: 0.205603
+Method: SHIFT, Improvement: BEST_IMPROVEMENT
+Cost: 1883
+Path: 1 23 18 15 28 27 6 30 4 3 2 13 24 29 14 5 11 10 12 9 22 25 17 20 16 34 33 35 26 32 19 7 31 36 21 8 
+Time: 0.256347
+Method: INVERT, Improvement: FIRST_IMPROVEMENT
+Cost: 1702
+Path: 9 22 36 31 25 17 7 19 34 16 32 26 35 33 20 13 24 29 14 5 11 10 12 1 23 2 3 4 18 15 28 27 6 30 21 8 
+Time: 0.149057
+Method: INVERT, Improvement: BEST_IMPROVEMENT
+Cost: 1766
+Path: 1 23 30 6 27 28 15 18 4 3 2 9 12 10 11 5 14 29 24 13 20 33 16 34 35 26 32 19 7 17 25 31 36 22 21 8 
+Time: 0.159407
+
+Results for file: data/problem_5.csv
+[Cheapest Insertion without Local Search]
+Cost: 1572.7
+Path: 21 23 3 4 6 15 18 2 24 13 14 5 11 1 10 12 20 16 19 7 17 22 9 8 
+Time: 0.00549
+[Cheapest Insertion with Local Search]
+Method: SWAP, Improvement: FIRST_IMPROVEMENT
+Cost: 1460.6
+Path: 21 23 3 4 6 15 18 14 5 24 13 11 2 1 10 12 20 16 19 7 17 22 9 8 
+Time: 0.035025
+Method: SWAP, Improvement: BEST_IMPROVEMENT
+Cost: 1460.6
+Path: 21 23 3 4 6 15 18 14 5 24 13 11 2 1 10 12 20 16 19 7 17 22 9 8 
+Time: 0.049061
+Method: SHIFT, Improvement: FIRST_IMPROVEMENT
+Cost: 1448.9
+Path: 23 3 4 6 15 18 14 13 24 5 11 2 1 10 12 20 16 19 7 17 22 21 9 8 
+Time: 0.046246
+Method: SHIFT, Improvement: BEST_IMPROVEMENT
+Cost: 1440
+Path: 23 3 4 6 15 18 14 5 24 13 11 2 1 10 12 20 16 19 7 17 22 21 9 8 
+Time: 0.086751
+Method: INVERT, Improvement: FIRST_IMPROVEMENT
+Cost: 1351
+Path: 9 21 23 3 4 6 15 18 14 5 24 13 20 16 19 7 17 22 12 10 11 2 1 8 
+Time: 0.072535
+Method: INVERT, Improvement: BEST_IMPROVEMENT
+Cost: 1351
+Path: 21 23 3 4 6 15 18 14 5 24 13 20 16 19 7 17 22 12 10 11 2 1 8 9 
+Time: 0.075571
+
+Results for file: data/problem_6.csv
+[Cheapest Insertion without Local Search]
+Cost: 1389
+Path: 1 23 6 15 18 4 3 2 20 19 16 7 17 13 24 14 5 11 10 12 9 22 21 8 
+Time: 0.00537
+[Cheapest Insertion with Local Search]
+Method: SWAP, Improvement: FIRST_IMPROVEMENT
+Cost: 1385
+Path: 1 23 6 15 18 4 3 2 20 16 19 7 17 13 24 14 5 11 10 12 9 22 21 8 
+Time: 0.016871
+Method: SWAP, Improvement: BEST_IMPROVEMENT
+Cost: 1385
+Path: 1 23 6 15 18 4 3 2 20 16 19 7 17 13 24 14 5 11 10 12 9 22 21 8 
+Time: 0.019165
+Method: SHIFT, Improvement: FIRST_IMPROVEMENT
+Cost: 1270
+Path: 18 15 6 4 3 23 21 22 17 7 19 16 20 13 24 5 11 10 12 9 8 1 2 14 
+Time: 0.113221
+Method: SHIFT, Improvement: BEST_IMPROVEMENT
+Cost: 1260
+Path: 1 2 3 4 18 15 6 23 21 22 17 7 19 16 20 13 24 14 5 11 10 12 9 8 
+Time: 0.234868
+Method: INVERT, Improvement: FIRST_IMPROVEMENT
+Cost: 1270
+Path: 9 12 10 23 6 15 18 4 3 2 1 11 5 14 24 13 20 16 19 7 17 22 21 8 
+Time: 0.041347
+Method: INVERT, Improvement: BEST_IMPROVEMENT
+Cost: 1293
+Path: 1 23 6 15 18 4 3 2 9 12 10 11 5 14 24 13 20 16 19 7 17 22 21 8 
+Time: 0.0483
+
+Results for file: data/problem_7.csv
+[Cheapest Insertion without Local Search]
+Cost: 747.5
+Path: 11 5 2 3 4 6 1 10 12 7 9 8 
+Time: 0.001402
+[Cheapest Insertion with Local Search]
+Method: SWAP, Improvement: FIRST_IMPROVEMENT
+Cost: 711
+Path: 11 5 2 3 4 6 1 8 9 7 12 10 
+Time: 0.004649
+Method: SWAP, Improvement: BEST_IMPROVEMENT
+Cost: 711
+Path: 11 5 2 3 4 6 1 8 9 7 12 10 
+Time: 0.006101
+Method: SHIFT, Improvement: FIRST_IMPROVEMENT
+Cost: 728.8
+Path: 11 5 2 3 4 6 1 12 7 9 8 10 
+Time: 0.00581
+Method: SHIFT, Improvement: BEST_IMPROVEMENT
+Cost: 728.8
+Path: 11 5 2 3 4 6 1 12 7 9 8 10 
+Time: 0.006492
+Method: INVERT, Improvement: FIRST_IMPROVEMENT
+Cost: 699.2
+Path: 1 6 4 3 2 5 7 12 10 11 9 8 
+Time: 0.003597
+Method: INVERT, Improvement: BEST_IMPROVEMENT
+Cost: 699.2
+Path: 1 6 4 3 2 5 7 12 10 11 9 8 
+Time: 0.005139
+
+Results for file: data/problem_8.csv
+[Cheapest Insertion without Local Search]
+Cost: 609
+Path: 1 6 4 3 2 5 11 10 12 7 9 8 
+Time: 0.001192
+[Cheapest Insertion with Local Search]
+Method: SWAP, Improvement: FIRST_IMPROVEMENT
+Cost: 609
+Path: 1 6 4 3 2 5 11 10 12 7 9 8 
+Time: 0.002053
+Method: SWAP, Improvement: BEST_IMPROVEMENT
+Cost: 609
+Path: 1 6 4 3 2 5 11 10 12 7 9 8 
+Time: 0.002034
+Method: SHIFT, Improvement: FIRST_IMPROVEMENT
+Cost: 609
+Path: 1 6 4 3 2 5 11 10 12 7 9 8 
+Time: 0.003657
+Method: SHIFT, Improvement: BEST_IMPROVEMENT
+Cost: 609
+Path: 1 6 4 3 2 5 11 10 12 7 9 8 
+Time: 0.003577
+Method: INVERT, Improvement: FIRST_IMPROVEMENT
+Cost: 609
+Path: 1 6 4 3 2 5 11 10 12 7 9 8 
+Time: 0.002164
+Method: INVERT, Improvement: BEST_IMPROVEMENT
+Cost: 609
+Path: 1 6 4 3 2 5 11 10 12 7 9 8 
+Time: 0.002134
+
+Results for file: data/problem_9.csv
+[Cheapest Insertion without Local Search]
+Cost: 438.3
+Path: 1 11 10 12 7 9 8 
+Time: 0.000491
+[Cheapest Insertion with Local Search]
+Method: SWAP, Improvement: FIRST_IMPROVEMENT
+Cost: 438.3
+Path: 1 11 10 12 7 9 8 
+Time: 0.000952
+Method: SWAP, Improvement: BEST_IMPROVEMENT
+Cost: 438.3
+Path: 1 11 10 12 7 9 8 
+Time: 0.000772
+Method: SHIFT, Improvement: FIRST_IMPROVEMENT
+Cost: 438.3
+Path: 11 10 12 7 9 8 1 
+Time: 0.001423
+Method: SHIFT, Improvement: BEST_IMPROVEMENT
+Cost: 438.3
+Path: 11 10 12 7 9 8 1 
+Time: 0.002103
+Method: INVERT, Improvement: FIRST_IMPROVEMENT
+Cost: 438.3
+Path: 1 11 10 12 7 9 8 
+Time: 0.000741
+Method: INVERT, Improvement: BEST_IMPROVEMENT
+Cost: 438.3
+Path: 1 11 10 12 7 9 8 
+Time: 0.000741
+
+Results for file: data/problem_10.csv
+[Cheapest Insertion without Local Search]
+Cost: 364
+Path: 1 11 10 12 7 9 8 
+Time: 0.000391
+[Cheapest Insertion with Local Search]
+Method: SWAP, Improvement: FIRST_IMPROVEMENT
+Cost: 364
+Path: 1 11 10 12 7 9 8 
+Time: 0.000821
+Method: SWAP, Improvement: BEST_IMPROVEMENT
+Cost: 364
+Path: 1 11 10 12 7 9 8 
+Time: 0.000741
+Method: SHIFT, Improvement: FIRST_IMPROVEMENT
+Cost: 364
+Path: 1 11 10 12 7 9 8 
+Time: 0.001112
+Method: SHIFT, Improvement: BEST_IMPROVEMENT
+Cost: 364
+Path: 1 11 10 12 7 9 8 
+Time: 0.001052
+Method: INVERT, Improvement: FIRST_IMPROVEMENT
+Cost: 364
+Path: 1 11 10 12 7 9 8 
+Time: 0.000731
+Method: INVERT, Improvement: BEST_IMPROVEMENT
+Cost: 364
+Path: 1 11 10 12 7 9 8 
+Time: 0.000741
+
+Results for file: data/problem_11.csv
+[Cheapest Insertion without Local Search]
+Cost: 348.3
+Path: 2 5 1 6 4 3 
+Time: 0.000351
+[Cheapest Insertion with Local Search]
+Method: SWAP, Improvement: FIRST_IMPROVEMENT
+Cost: 348.3
+Path: 2 5 1 6 4 3 
+Time: 0.000591
+Method: SWAP, Improvement: BEST_IMPROVEMENT
+Cost: 348.3
+Path: 2 5 1 6 4 3 
+Time: 0.000561
+Method: SHIFT, Improvement: FIRST_IMPROVEMENT
+Cost: 348.3
+Path: 2 5 1 6 4 3 
+Time: 0.000912
+Method: SHIFT, Improvement: BEST_IMPROVEMENT
+Cost: 348.3
+Path: 2 5 1 6 4 3 
+Time: 0.000912
+Method: INVERT, Improvement: FIRST_IMPROVEMENT
+Cost: 348.3
+Path: 2 5 1 6 4 3 
+Time: 0.000571
+Method: INVERT, Improvement: BEST_IMPROVEMENT
+Cost: 348.3
+Path: 2 5 1 6 4 3 
+Time: 0.000551
+
+Results for file: data/problem_12.csv
+[Cheapest Insertion without Local Search]
+Cost: 305
+Path: 1 5 2 6 4 3 
+Time: 0.000331
+[Cheapest Insertion with Local Search]
+Method: SWAP, Improvement: FIRST_IMPROVEMENT
+Cost: 305
+Path: 1 5 2 6 4 3 
+Time: 0.000572
+Method: SWAP, Improvement: BEST_IMPROVEMENT
+Cost: 305
+Path: 1 5 2 6 4 3 
+Time: 0.000521
+Method: SHIFT, Improvement: FIRST_IMPROVEMENT
+Cost: 305
+Path: 1 5 2 6 4 3 
+Time: 0.000812
+Method: SHIFT, Improvement: BEST_IMPROVEMENT
+Cost: 305
+Path: 1 5 2 6 4 3 
+Time: 0.000782
+Method: INVERT, Improvement: FIRST_IMPROVEMENT
+Cost: 305
+Path: 1 5 2 6 4 3 
+Time: 0.000561
+Method: INVERT, Improvement: BEST_IMPROVEMENT
+Cost: 305
+Path: 1 5 2 6 4 3 
+Time: 0.000571
+
+Results for file: data/small_example.csv
+[Cheapest Insertion without Local Search]
+Cost: 8
+Path: 1 3 2 0 
+Time: 0.000381
+[Cheapest Insertion with Local Search]
+Method: SWAP, Improvement: FIRST_IMPROVEMENT
+Cost: 8
+Path: 1 3 2 0 
+Time: 0.00045
+Method: SWAP, Improvement: BEST_IMPROVEMENT
+Cost: 8
+Path: 1 3 2 0 
+Time: 0.000421
+Method: SHIFT, Improvement: FIRST_IMPROVEMENT
+Cost: 8
+Path: 1 3 2 0 
+Time: 0.000411
+Method: SHIFT, Improvement: BEST_IMPROVEMENT
+Cost: 8
+Path: 1 3 2 0 
+Time: 0.000431
+Method: INVERT, Improvement: FIRST_IMPROVEMENT
+Cost: 8
+Path: 1 3 2 0 
+Time: 0.000301
+Method: INVERT, Improvement: BEST_IMPROVEMENT
+Cost: 8
+Path: 1 3 2 0 
+Time: 0.000321

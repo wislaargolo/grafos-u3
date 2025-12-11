@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include <iomanip>
+#include <chrono>
 
 #include "../graph/DirectedAdjacencyListGraph.h"
 #include "../utils/GraphIO.h"
@@ -13,7 +14,6 @@
 
 int main()
 {
-    std::cout << "Hellow" << "\n";
     std::vector<std::string> files = {
         "data/problem_1.csv",
         "data/problem_2.csv",
@@ -53,7 +53,15 @@ int main()
 
         output << "\nResults for file: " << filename << "\n";
 
+        // Começa a marcar o tempo de execução
+        auto start_time = std::chrono::high_resolution_clock::now();
+
+        // Execução do algoritmo memetico
         auto memeticResult = memetic_search(graph, weights);
+
+        // Termina de marcar o tempo de execução
+        auto end_time = std::chrono::high_resolution_clock::now();
+        auto duration = std::chrono::duration<double, std::milli>(end_time - start_time);
 
         output << "[Memetic Algorithm]\n";
         output << "Cost: " << memeticResult.cost << "\n";
@@ -62,6 +70,7 @@ int main()
             output << graph.get_node(node) << " ";
         }
         output << "\n";
+        output << "Time: " << duration.count() << "\n";
     }
 
     output.close();

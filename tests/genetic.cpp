@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include <iomanip>
+#include <chrono>
 
 #include "../graph/DirectedAdjacencyListGraph.h"
 #include "../utils/GraphIO.h"
@@ -47,8 +48,16 @@ int main() {
 
         output << "\nResults for file: " << filename << "\n";
 
+        // Começa a marcar o tempo de execução
+        auto start_time = std::chrono::high_resolution_clock::now();
+
+        // Execução do algoritmo genetico
         auto nn_path = genetic_search(graph, weights);
         double nn_cost = calculate_path_cost(weights, nn_path);
+
+        // Termina de marcar o tempo de execução
+        auto end_time = std::chrono::high_resolution_clock::now();
+        auto duration = std::chrono::duration<double, std::milli>(end_time - start_time);
 
         output << "[Genetic Algorithm]\n";
         output << "Cost: " << nn_cost << "\n";
@@ -57,6 +66,7 @@ int main() {
             output << graph.get_node(node) << " ";
         }
         output << "\n";
+        output << "Time: " << duration.count() << "\n";
 
     }
 

@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include <iomanip>
+#include <chrono>
 
 #include "../graph/DirectedAdjacencyListGraph.h"
 #include "../utils/GraphIO.h"
@@ -61,9 +62,16 @@ int main() {
 
         output << "\nResults for file: " << filename << "\n";
 
+        // Começa a marcar o tempo de execução
+        auto start_time = std::chrono::high_resolution_clock::now();
+
         //Nearest Neighbor without Local Search
         auto nn_path = nearest_neighbor(graph, weights, start_node);
         double nn_cost = calculate_path_cost(weights, nn_path);
+
+        // Termina de marcar o tempo de execução
+        auto end_time = std::chrono::high_resolution_clock::now();
+        auto duration = std::chrono::duration<double, std::milli>(end_time - start_time);
 
         output << "[Nearest Neighbor without Local Search]\n";
         output << "Cost: " << nn_cost << "\n";
@@ -72,12 +80,20 @@ int main() {
             output << graph.get_node(node) << " ";
         }
         output << "\n";
+        output << "Time: " << duration.count() << "\n";
 
         //Nearest Neighbor with Local Search
         output << "[Nearest Neighbor with Local Search]\n";
         for(const auto& method : methods) {
             for(const auto& improvement : improvements) {
+                // Começa a marcar o tempo de execução
+                auto start_time = std::chrono::high_resolution_clock::now();
+
                 auto result = nearest_neighbor_local_search(graph, weights, start_node, method, improvement);
+
+                // Termina de marcar o tempo de execução
+                auto end_time = std::chrono::high_resolution_clock::now();
+                auto duration = std::chrono::duration<double, std::milli>(end_time - start_time);
 
                 output << "Method: " << method_to_string(method)
                        << ", Improvement: " << improvement_to_string(improvement) << "\n";
@@ -87,6 +103,7 @@ int main() {
                     output << graph.get_node(node) << " ";
                 }
                 output << "\n";
+                output << "Time: " << duration.count() << "\n";
             }
         }
 

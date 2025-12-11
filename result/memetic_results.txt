@@ -1,0 +1,65 @@
+
+Results for file: data/problem_1.csv
+[Genetic Algorithm]
+Cost: 1942.3
+Path: 12 10 11 5 2 3 4 23 1 8 9 21 30 6 27 41 44 28 15 18 45 46 14 43 29 24 13 37 47 39 35 42 26 32 34 16 33 20 19 7 17 31 25 36 40 48 22 38 
+
+Results for file: data/problem_2.csv
+[Genetic Algorithm]
+Cost: 1973
+Path: 7 31 36 22 48 40 25 17 20 38 12 9 8 21 23 4 3 2 1 10 11 5 41 30 6 27 44 28 15 18 45 46 14 43 29 24 13 37 47 39 35 42 26 32 16 34 33 19 
+
+Results for file: data/problem_3.csv
+[Genetic Algorithm]
+Cost: 1695
+Path: 35 13 24 29 14 18 15 28 27 6 30 21 9 8 1 23 4 3 2 5 11 10 12 22 36 25 31 17 7 19 20 33 16 34 32 26 
+
+Results for file: data/problem_4.csv
+[Genetic Algorithm]
+Cost: 1662
+Path: 4 30 6 27 28 15 18 14 29 24 13 35 26 32 16 34 33 20 19 7 17 25 31 36 22 21 8 9 12 10 11 5 2 1 23 3 
+
+Results for file: data/problem_5.csv
+[Genetic Algorithm]
+Cost: 1321
+Path: 14 5 24 13 20 16 19 7 17 22 21 8 9 12 10 11 2 1 23 3 4 6 15 18 
+
+Results for file: data/problem_6.csv
+[Genetic Algorithm]
+Cost: 1223
+Path: 13 20 16 19 7 17 22 21 8 9 12 10 11 1 2 3 4 23 6 15 18 14 5 24 
+
+Results for file: data/problem_7.csv
+[Genetic Algorithm]
+Cost: 672.7
+Path: 7 12 10 9 8 1 6 4 3 2 11 5 
+
+Results for file: data/problem_8.csv
+[Genetic Algorithm]
+Cost: 606
+Path: 10 11 5 7 12 9 8 1 2 6 4 3 
+
+Results for file: data/problem_9.csv
+[Genetic Algorithm]
+Cost: 438.3
+Path: 11 10 12 7 9 8 1 
+
+Results for file: data/problem_10.csv
+[Genetic Algorithm]
+Cost: 364
+Path: 1 11 10 12 7 9 8 
+
+Results for file: data/problem_11.csv
+[Genetic Algorithm]
+Cost: 344.9
+Path: 5 4 6 3 1 2 
+
+Results for file: data/problem_12.csv
+[Genetic Algorithm]
+Cost: 305
+Path: 1 5 2 6 4 3 
+
+Results for file: data/small_example.csv
+[Genetic Algorithm]
+Cost: 8
+Path: 0 2 3 1 

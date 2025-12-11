@@ -1,0 +1,28 @@
+Resumo para arquivo: data/problem_1.csv
+
+Execuções:
+Execução 1 -> Cost: 2072.3 | Time: 370.376 ms
+Execução 2 -> Cost: 1994.4 | Time: 376.309 ms
+Execução 3 -> Cost: 2043.8 | Time: 408.364 ms
+Execução 4 -> Cost: 2066.1 | Time: 372.58 ms
+Execução 5 -> Cost: 2018.8 | Time: 397.963 ms
+Execução 6 -> Cost: 2057.1 | Time: 381.573 ms
+Execução 7 -> Cost: 2016.7 | Time: 382.218 ms
+Execução 8 -> Cost: 1974.1 | Time: 392.245 ms
+Execução 9 -> Cost: 2066.4 | Time: 380.672 ms
+Execução 10 -> Cost: 2053 | Time: 384.82 ms
+Execução 11 -> Cost: 2004.1 | Time: 400.274 ms
+Execução 12 -> Cost: 2050.2 | Time: 371.871 ms
+Execução 13 -> Cost: 1973.6 | Time: 380.681 ms
+Execução 14 -> Cost: 2009.3 | Time: 376.039 ms
+Execução 15 -> Cost: 2038 | Time: 387.014 ms
+Execução 16 -> Cost: 2047.6 | Time: 378.071 ms
+Execução 17 -> Cost: 2013 | Time: 381.489 ms
+Execução 18 -> Cost: 2050.8 | Time: 377.405 ms
+Execução 19 -> Cost: 1988.5 | Time: 373.487 ms
+Execução 20 -> Cost: 2047.6 | Time: 385.358 ms
+
+--------------------------------------
+Melhor custo: 1973.6
+Média dos tempos: 382.94045000000000000000 ms
+--------------------------------------

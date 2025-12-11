@@ -2,77 +2,77 @@
 Results for file: data/problem_1.csv
 [Memetic Algorithm]
 Cost: 1942.3
-Path: 12 10 11 5 2 3 4 23 1 8 9 21 30 6 27 41 44 28 15 18 45 46 14 43 29 24 13 37 47 39 35 42 26 32 34 16 33 20 19 7 17 31 25 36 40 48 22 38 
-Time: 5095.16
+Path: 29 43 14 46 45 18 15 28 44 41 27 6 30 21 9 8 1 23 4 3 2 5 11 10 12 38 22 48 40 36 25 31 17 7 19 20 33 16 34 32 26 42 35 39 47 37 13 24 
+Time: 5111.83
 
 Results for file: data/problem_2.csv
 [Memetic Algorithm]
 Cost: 1973
-Path: 18 15 28 44 27 6 30 41 5 11 10 1 2 3 4 23 21 8 9 12 38 20 17 25 40 48 22 36 31 7 19 33 34 16 32 26 42 35 39 47 37 13 24 29 43 14 46 45 
-Time: 4862.19
+Path: 14 43 29 24 13 37 47 39 35 42 26 32 16 34 33 19 7 31 36 22 48 40 25 17 20 38 12 9 8 21 23 4 3 2 1 10 11 5 41 30 6 27 44 28 15 18 45 46 
+Time: 4804.86
 
 Results for file: data/problem_3.csv
 [Memetic Algorithm]
 Cost: 1695
 Path: 35 13 24 29 14 18 15 28 27 6 30 21 9 8 1 23 4 3 2 5 11 10 12 22 36 25 31 17 7 19 20 33 16 34 32 26 
-Time: 2623.61
+Time: 2212.22
 
 Results for file: data/problem_4.csv
 [Memetic Algorithm]
 Cost: 1662
-Path: 31 36 22 21 8 9 12 10 11 5 2 1 23 3 4 30 6 27 28 15 18 14 29 24 13 35 26 32 16 34 33 20 19 7 17 25 
-Time: 2902.45
+Path: 33 20 19 7 17 25 31 36 22 21 8 9 12 10 11 5 2 1 23 3 4 30 6 27 28 15 18 14 29 24 13 35 26 32 16 34 
+Time: 2557.11
 
 Results for file: data/problem_5.csv
 [Memetic Algorithm]
 Cost: 1321
-Path: 14 5 24 13 20 16 19 7 17 22 21 8 9 12 10 11 2 1 23 3 4 6 15 18 
-Time: 940.637
+Path: 21 22 17 7 19 16 20 13 24 5 14 18 15 6 4 3 23 1 2 11 10 12 9 8 
+Time: 950.781
 
 Results for file: data/problem_6.csv
 [Memetic Algorithm]
 Cost: 1223
-Path: 18 15 6 23 4 3 2 1 11 10 12 9 8 21 22 17 7 19 16 20 13 24 5 14 
-Time: 1106.64
+Path: 14 5 24 13 20 16 19 7 17 22 21 8 9 12 10 11 1 2 3 4 23 6 15 18 
+Time: 1244.93
 
 Results for file: data/problem_7.csv
 [Memetic Algorithm]
 Cost: 672.7
-Path: 7 5 11 2 3 4 6 1 8 9 10 12 
-Time: 568.321
+Path: 8 1 6 4 3 2 11 5 7 12 10 9 
+Time: 610.257
 
 Results for file: data/problem_8.csv
 [Memetic Algorithm]
 Cost: 606
-Path: 10 11 5 7 12 9 8 1 2 6 4 3 
-Time: 603.126
+Path: 4 3 10 11 5 7 12 9 8 1 2 6 
+Time: 605.226
 
 Results for file: data/problem_9.csv
 [Memetic Algorithm]
 Cost: 438.3
 Path: 11 10 12 7 9 8 1 
-Time: 527.443
+Time: 527.845
 
 Results for file: data/problem_10.csv
 [Memetic Algorithm]
 Cost: 364
 Path: 1 11 10 12 7 9 8 
-Time: 521.263
+Time: 529.357
 
 Results for file: data/problem_11.csv
 [Memetic Algorithm]
 Cost: 344.9
-Path: 6 3 1 2 5 4 
-Time: 517.61
+Path: 3 1 2 5 4 6 
+Time: 524.072
 
 Results for file: data/problem_12.csv
 [Memetic Algorithm]
 Cost: 305
 Path: 1 5 2 6 4 3 
-Time: 520.11
+Time: 525.769
 
 Results for file: data/small_example.csv
 [Memetic Algorithm]
 Cost: 8
 Path: 0 2 3 1 
-Time: 505.485
+Time: 523.146

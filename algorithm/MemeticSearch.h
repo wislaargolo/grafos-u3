@@ -143,7 +143,7 @@ TSPResult memetic_search(const IGraph<Node> &graph,
         std::vector<Individual> offspring = generate_new_individuas(population, weights, i, last_parents);
 
         // (4) Busca local
-        improve_individuas(weights, offspring, LocalSearchMethod::INVERT, ImprovementType::BEST_IMPROVEMENT);
+        improve_individuas(weights, offspring, LocalSearchMethod::SWAP, ImprovementType::FIRST_IMPROVEMENT);
 
         // (5) Renovar
         renew_population(population, offspring, weights);

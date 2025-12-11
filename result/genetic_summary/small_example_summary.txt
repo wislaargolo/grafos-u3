@@ -1,0 +1,28 @@
+Resumo para arquivo: data/small_example.csv
+
+Execuções:
+Execução 1 -> Cost: 8 | Time: 358.693 ms
+Execução 2 -> Cost: 8 | Time: 371.34 ms
+Execução 3 -> Cost: 8 | Time: 373.267 ms
+Execução 4 -> Cost: 8 | Time: 376.339 ms
+Execução 5 -> Cost: 8 | Time: 369.815 ms
+Execução 6 -> Cost: 8 | Time: 364.29 ms
+Execução 7 -> Cost: 8 | Time: 367.834 ms
+Execução 8 -> Cost: 8 | Time: 359.928 ms
+Execução 9 -> Cost: 8 | Time: 358.001 ms
+Execução 10 -> Cost: 8 | Time: 365.343 ms
+Execução 11 -> Cost: 8 | Time: 361.929 ms
+Execução 12 -> Cost: 8 | Time: 359.079 ms
+Execução 13 -> Cost: 8 | Time: 364.407 ms
+Execução 14 -> Cost: 8 | Time: 354.889 ms
+Execução 15 -> Cost: 8 | Time: 358.715 ms
+Execução 16 -> Cost: 8 | Time: 361.893 ms
+Execução 17 -> Cost: 8 | Time: 366.15 ms
+Execução 18 -> Cost: 8 | Time: 364.525 ms
+Execução 19 -> Cost: 8 | Time: 366.07 ms
+Execução 20 -> Cost: 8 | Time: 358.686 ms
+
+--------------------------------------
+Melhor custo: 8
+Média dos tempos: 364.05965000000000000000 ms
+--------------------------------------

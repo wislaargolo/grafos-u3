@@ -71,7 +71,7 @@ int main() {
     }
 
     output.close();
-    std::cout << "Genetic Algorithm tests completed. Results written to 'result/nearestn_results.txt'.\n";
+    std::cout << "Genetic Algorithm tests completed. Results written to 'result/genetic_results.txt'.\n";
 
     return 0;
 }

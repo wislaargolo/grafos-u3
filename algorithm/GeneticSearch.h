@@ -9,14 +9,17 @@
 #include "../graph/IGraph.h"
 #include "CheapestInsertion.h"
 #include "NearestNeighbor.h"
+#include "../utils/TSPUtils.h"
 
-#define POPULATION_SIZE 100
-#define MAX_ITERATIONS_NUMBER 1000
-#define MAX_STAGNANT_ITERATIONS_NUMBER 20
+#define POPULATION_SIZE 500
+#define MAX_ITERATIONS_NUMBER 10000
+#define MAX_STAGNANT_ITERATIONS_NUMBER 10000
+#define MUTATION_PERCENT 0.5
 
-struct GeneticSolution {
+struct Individual {
   std::vector<int> path;
   double cost;
+  double fitness;
 };
 
 std::vector<int> generate_random_path(size_t order) {
@@ -31,64 +34,71 @@ std::vector<int> generate_random_path(size_t order) {
     return path;
 }
 
-double calculate_path_cost(const std::vector<std::vector<double>>& weights,
-    const std::vector<int>& path) {
-
-    double total_cost = 0.0;
-
-    for (size_t i = 0; i < path.size(); i++) {
-        int a = path[i];
-        int b = path[i + 1 == path.size() ? 0 : i + 1];
-
-        total_cost += weights[a][b];
-    }
-
-    return total_cost;
-}
-
 template<typename Node>
-std::vector<std::vector<int>> generate_population(const IGraph<Node>& graph,
+std::vector<Individual> generate_population(const IGraph<Node>& graph,
     const std::vector<std::vector<double>>& weights) {
 
-    std::vector<std::vector<int>> population;
+    std::vector<Individual> population;
 
     std::vector<int> cheapest_insertion_result = cheapest_insertion(graph, weights, graph.get_node(0));
     std::vector<int> nearest_neighbor_result = nearest_neighbor(graph, weights, graph.get_node(0));
 
-    population.push_back(cheapest_insertion_result);
-    population.push_back(nearest_neighbor_result);
+    population.push_back({cheapest_insertion_result, -1, -1});
+    population.push_back({nearest_neighbor_result, -1, -1});
 
     for (size_t i = 2; i < POPULATION_SIZE; i++) {
         std::vector<int> random_path = generate_random_path(graph.get_order());
-        population.push_back(random_path);
+        population.push_back({random_path, -1, -1});
     }
 
     return population;
 }
 
-int select_random_parent(const std::vector<double>& fitness_scores) {
-    double total = 0;
+void calculate_fitness(std::vector<Individual>& population,
+    const std::vector<std::vector<double>>& weights) {
 
-    for (double score : fitness_scores) {
-        total += score;
+    for (auto& item : population) {
+        item.cost = calculate_path_cost(weights, item.path);
+        item.fitness = 1 / item.cost;
     }
+}
 
-    std::random_device device;
-    std::mt19937 gen(device());
-    std::uniform_real_distribution<double> distribution(0.0, total);
+std::pair<int, int> select_best_parents(const std::vector<Individual>& population, std::pair<int, int> last_parents) {
+    int first_better = -1, second_better = -1;
 
-    double random = distribution(gen);
-    total = 0;
+    for (size_t i = 0; i < population.size(); i++) {
+        if (i == last_parents.first || i == last_parents.second) {
+            continue;
+        }
 
-    for (size_t i = 0; i < fitness_scores.size(); i++) {
-        total += fitness_scores[i];
-
-        if (total >= random) {
-            return i;
+        if (first_better == -1 || population[i].fitness > population[first_better].fitness) {
+            second_better = first_better;
+            first_better = i;
+        } else if (second_better == -1 || population[i].fitness > population[second_better].fitness) {
+            second_better = i;
         }
     }
 
-    return fitness_scores.size() - 1;
+    return std::make_pair(first_better, second_better);;
+}
+
+std::pair<int, int> select_random_parents(const std::vector<Individual>& population) {
+    int first_parent = std::rand() % population.size();
+    int second_parent = (first_parent + std::rand() % (population.size() - 1) + 1) % population.size();
+
+    return std::make_pair(first_parent, second_parent);
+}
+
+std::pair<int, int> select_parents(const std::vector<Individual>& population, int iteration_count,
+    std::pair<int, int>& last_parents) {
+
+    if (iteration_count % 4 == 3) {
+        return select_random_parents(population);
+    } else {
+        last_parents = select_best_parents(population, last_parents);
+
+        return last_parents;
+    }
 }
 
 /**
@@ -98,9 +108,9 @@ int select_random_parent(const std::vector<double>& fitness_scores) {
  * @param rng O gerador de números aleatórios
  * @return O caminho do filho gerado pelo crossover
  */
-std::vector<int> ordered_crossover(const std::vector<int>& first_parent, const std::vector<int>& second_parent) {
-    int total_nodes = first_parent.size();
-    std::vector<int> offspring(total_nodes, -1);
+std::vector<int> ordered_crossover(const Individual& first_parent, const Individual& second_parent) {
+    int total_nodes = first_parent.path.size();
+    std::vector<int> path(total_nodes, -1);
 
     // Pontos de corte aleatórios
     int start_index = std::rand() % total_nodes;
@@ -115,8 +125,8 @@ std::vector<int> ordered_crossover(const std::vector<int>& first_parent, const s
 
     // copia fatia
     for (int i = start_index; i <= end_index; ++i) {
-        int node = first_parent[i];
-        offspring[i] = node;
+        int node = first_parent.path[i];
+        path[i] = node;
         is_node_inserted[node] = true;
     }
 
@@ -125,11 +135,11 @@ std::vector<int> ordered_crossover(const std::vector<int>& first_parent, const s
     int current_index_offspring = (end_index + 1) % total_nodes;
 
     while (current_index_offspring != start_index) {
-        int candidate_node = second_parent[current_index_second_parent];
+        int candidate_node = second_parent.path[current_index_second_parent];
 
         // Verifica se o nó já foi inserido
         if (!is_node_inserted[candidate_node]) {
-            offspring[current_index_offspring] = candidate_node;
+            path[current_index_offspring] = candidate_node;
             is_node_inserted[candidate_node] = true;
 
             current_index_offspring = (current_index_offspring + 1) % total_nodes;
@@ -138,7 +148,7 @@ std::vector<int> ordered_crossover(const std::vector<int>& first_parent, const s
         current_index_second_parent = (current_index_second_parent + 1) % total_nodes;
     }
 
-    return offspring;
+    return path;
 }
 
 // ALGORTIMOS DE MUTAÇÃO
@@ -203,7 +213,7 @@ void mutation_scramble(std::vector<int>& individual) {
  * @param individual O indivíduo a ser mutado
  * @param mutation_rate A taxa de mutação (entre 0.0 e 1.0)
  */
-void apply_mutation(std::vector<int>& individual, double mutation_rate) {
+void apply_mutation(Individual& individual, double mutation_rate) {
 
     double random_chance = (double)std::rand() / RAND_MAX;
 
@@ -213,13 +223,13 @@ void apply_mutation(std::vector<int>& individual, double mutation_rate) {
 
         switch (mutation_type) {
             case 0:
-                mutation_swap(individual);
+                mutation_swap(individual.path);
                 break;
             case 1:
-                mutation_inversion(individual);
+                mutation_inversion(individual.path);
                 break;
             case 2:
-                mutation_scramble(individual);
+                mutation_scramble(individual.path);
                 break;
         }
     }
@@ -232,20 +242,19 @@ void apply_mutation(std::vector<int>& individual, double mutation_rate) {
  * @param weights A matriz de pesos para cálculo do custo
  * @return A nova população após aplicar o elitismo
  */
-std::vector<std::vector<int>> renovation_elitism(
-    const std::vector<std::vector<int>>& current_population,
-    const std::vector<std::vector<int>>& offsprings,
+std::vector<Individual> renovation_elitism(
+    const std::vector<Individual> current_population,
+    const std::vector<Individual>& offsprings,
     const std::vector<std::vector<double>>& weights
 ) {
     // Copia da população atual
-    std::vector<std::vector<int>> new_population = current_population;
+    std::vector<Individual> new_population = current_population;
 
     // Criamos uma tabela para ordenar os indivíduos pelo custo
     std::vector<std::pair<double, int>> leaderboard;
 
     for (int i = 0; i < new_population.size(); ++i) {
-        double cost = calculate_path_cost(weights, new_population[i]);
-        leaderboard.push_back({cost, i});
+        leaderboard.push_back({new_population[i].cost, i});
     }
 
     // Ordena do menor para o maior custo
@@ -272,62 +281,57 @@ template<typename Node>
 std::vector<int> genetic_search(const IGraph<Node>& graph,
     const std::vector<std::vector<double>>& weights) {
 
-    std::vector<std::vector<int>> population = generate_population(graph, weights);
+    std::srand(std::time(nullptr));
 
-    std::vector<double> fitness_scores(population.size(), 0.0);
-
-    for (size_t i = 0; i < population.size(); i++) {
-        fitness_scores[i] = 1 / calculate_path_cost(weights, population[i]);
-    }
+    std::vector<Individual> population = generate_population(graph, weights);
+    calculate_fitness(population, weights);
 
     int stagnant_count = 0;
-    double best_solution_cost = INFINITY;
-    std::vector<int> best_solution;
+    Individual best_solution = population[0];
 
-    for (int i = 0; i < MAX_ITERATIONS_NUMBER; i++) {
+    std::pair<int, int> last_parents = {-1, -1};
 
-        std::vector<double> fitness_scores(population.size());
-
-        // Verifica fitness e atualiza melhor solução
-        for (size_t k = 0; k < population.size(); k++) {
-            double current_cost = calculate_path_cost(weights, population[k]);
-            fitness_scores[k] = 1.0 / current_cost;
-
-            if (current_cost < best_solution_cost) {
-                best_solution_cost = current_cost;
-                best_solution = population[k];
-                stagnant_count = 0; // Se houve melhoria, reseta o contador de estagnação
-            }
-        }
-
-        int parent_a_index = select_random_parent(fitness_scores);
-        int parent_b_index = select_random_parent(fitness_scores);
-
-        if (parent_a_index == parent_b_index) {
-            parent_b_index = (parent_b_index + 1) % population.size();
-        }
+    for (int i = 0; i < MAX_ITERATIONS_NUMBER && stagnant_count < MAX_STAGNANT_ITERATIONS_NUMBER; i++) {
+        std::pair<int, int> parents = select_parents(population, i, last_parents);
 
         // Cruzamento por crossover
-        std::vector<int> child1 = ordered_crossover(population[parent_a_index], population[parent_b_index]);
-        std::vector<int> child2 = ordered_crossover(population[parent_b_index], population[parent_a_index]);
+        std::vector<int> path1 = ordered_crossover(population[parents.first], population[parents.second]);
+        Individual child1 = {path1, -1, -1};
+
+        std::vector<int> path2 = ordered_crossover(population[parents.second], population[parents.first]);
+        Individual child2 = {path2, -1, -1};
 
         // Mutação com taxa de 50%
-        apply_mutation(child1, 0.5);
-        apply_mutation(child2, 0.5);
+        apply_mutation(child1, MUTATION_PERCENT);
+        apply_mutation(child2, MUTATION_PERCENT);
 
-        std::vector<std::vector<int>> offsprings = {child1, child2};
+        child1.cost = calculate_path_cost(weights, child1.path);
+        child2.cost = calculate_path_cost(weights, child2.path);
+        child1.fitness = 1 / child1.cost;
+        child2.fitness = 1 / child2.cost;
+
+        std::vector<Individual> offsprings = {child1, child2};
 
         // Renovação da população com elitismo
         population = renovation_elitism(population, offsprings, weights);
 
-        if (stagnant_count > MAX_STAGNANT_ITERATIONS_NUMBER) {
-            break;
+        int best_index = 0;
+
+        for (int i = 1; i < population.size(); i++) {
+            if (population[i].cost < population[best_index].cost) {
+                best_index = i;
+            }
         }
 
-        stagnant_count++; // Se não houve melhoria, incrementa o contador de estagnação
+        if (population[best_index].cost < best_solution.cost) {
+            best_solution = population[best_index];
+            stagnant_count = 0;
+        } else {
+            stagnant_count++;
+        }
     }
 
-    return best_solution;
+    return best_solution.path;
 }
 
 #endif

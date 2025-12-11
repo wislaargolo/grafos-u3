@@ -10,6 +10,10 @@
 #include "CheapestInsertion.h"
 #include "NearestNeighbor.h"
 
+#define POPULATION_SIZE 100
+#define MAX_ITERATIONS_NUMBER 1000
+#define MAX_STAGNANT_ITERATIONS_NUMBER 20
+
 struct GeneticSolution {
   std::vector<int> path;
   double cost;
@@ -55,7 +59,7 @@ std::vector<std::vector<int>> generate_population(const IGraph<Node>& graph,
     population.push_back(cheapest_insertion_result);
     population.push_back(nearest_neighbor_result);
 
-    for (size_t i = 2; i < 10; i++) {
+    for (size_t i = 2; i < POPULATION_SIZE; i++) {
         std::vector<int> random_path = generate_random_path(graph.get_order());
         population.push_back(random_path);
     }
@@ -63,34 +67,29 @@ std::vector<std::vector<int>> generate_population(const IGraph<Node>& graph,
     return population;
 }
 
-template<typename Node>
-std::vector<int> genetic_search(const IGraph<Node>& graph,
-    const std::vector<std::vector<double>>& weights, Node start_node) {
+int select_random_parent(const std::vector<double>& fitness_scores) {
+    double total = 0;
 
-    std::vector<std::vector<int>> population = generate_population(graph, weights, start_node);
-
-    std::vector<double> fitness_scores(population.size(), 0.0);
-
-    for (size_t i = 0; i < population.size(); i++) {
-        fitness_scores[i] = calculate_path_cost(weights, population[i]);
+    for (double score : fitness_scores) {
+        total += score;
     }
 
-    int first_lowest_index = -1, second_lowest_index = -1;
-    double first_lowest_cost = std::numeric_limits<double>::max();
-    double second_lowest_cost = std::numeric_limits<double>::max();
+    std::random_device device;
+    std::mt19937 gen(device());
+    std::uniform_real_distribution<double> distribution(0.0, total);
 
-    for (size_t i = 0; i < fitness_scores.size(); i++) {
-        if (fitness_scores[i] < first_lowest_cost) {
-            second_lowest_cost = first_lowest_cost;
-            second_lowest_index = first_lowest_index;
+    double random = distribution(gen);
+    total = 0;
 
-            first_lowest_cost = fitness_scores[i];
-            first_lowest_index = i;
-        } else if (fitness_scores[i] < second_lowest_cost) {
-            second_lowest_cost = fitness_scores[i];
-            second_lowest_index = i;
+    for (int i = 0; i < fitness_scores.size(); i++) {
+        total += fitness_scores[i];
+
+        if (total >= random) {
+            return i;
         }
     }
+
+    return fitness_scores.size() - 1;
 }
 
 /**
@@ -268,6 +267,40 @@ std::vector<std::vector<int>> renovation_elitism(
     }
 
     return new_population;
+}
+
+template<typename Node>
+std::vector<int> genetic_search(const IGraph<Node>& graph,
+    const std::vector<std::vector<double>>& weights, Node start_node) {
+
+    std::vector<std::vector<int>> population = generate_population(graph, weights, start_node);
+
+    std::vector<double> fitness_scores(population.size(), 0.0);
+
+    for (std::vector<int>& path) {
+        fitness_scores[i] = 1 / calculate_path_cost(weights, path);
+    }
+
+    int stagnant_count = 0;
+    int best_solution_cost = INFINITY;
+    std::vector<int>& best_solution;
+
+    for (int i = 0; i < MAX_ITERATIONS_NUMBER; i++) {
+        int parent_a_index = select_random_parent(fitness_scores);
+        int parent_b_index = select_random_parent(fitness_scores);
+
+        if (parent_a_index == parent_b_index) {
+            parent_b_index = (parent_b_index + 1) % population.size();
+        }
+
+        // cruzamento, mutação, renovação
+
+        if (stagnant_count > MAX_STAGNANT_ITERATIONS_NUMBER) {
+            break;
+        }
+    }
+
+    return best_solution;
 }
 
 #endif

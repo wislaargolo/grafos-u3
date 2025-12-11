@@ -230,9 +230,9 @@ void apply_mutation(std::vector<int>& individual, double mutation_rate) {
 /**
  * @brief Aplica elitismo copiando o melhor indivíduo da população atual para a próxima geração
  * @param current_population A população atual
- * @param next_generation A próxima geração onde o melhor indivíduo será copiado
+ * @param offsprings Os filhos gerados para a próxima geração
  * @param weights A matriz de pesos para cálculo do custo
- * @param k_elites O número de indivíduos de elite a serem copiados
+ * @return A nova população após aplicar o elitismo
  */
 std::vector<std::vector<int>> renovation_elitism(
     const std::vector<std::vector<int>>& current_population,

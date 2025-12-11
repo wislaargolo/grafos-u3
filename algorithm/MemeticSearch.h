@@ -6,15 +6,10 @@
 #include "GeneticSearch.h"
 #include "LocalSearch.h"
 
-struct MemeticSolution
-{
-    std::vector<int> path;
-    double cost;
-};
 
 template <typename Node>
 void print_population(const IGraph<Node> &graph, const std::vector<std::vector<double>> &weights,
-                      std::vector<std::vector<int>> &population)
+                      std::vector<Individual>& population)
 {
     std::cout << "[Population]\n";
     for (size_t i = 0; i < population.size(); i++)
@@ -34,13 +29,17 @@ void print_population(const IGraph<Node> &graph, const std::vector<std::vector<d
 // GeneticSearch::generate_population()
 template <typename Node>
 std::vector<std::vector<int>> generate_initial_population(const IGraph<Node> &graph,
-                                                          const std::vector<std::vector<double>> &weights, Node start_node)
+                                                          const std::vector<std::vector<double>> &weights)
 {
 
-    return generate_inital_population(graph, weights, start_node);
+    return generate_population(graph, weights);
 };
 
 // (2) Fitness
+void calculate_initial_fitness(std::vector<Individual>& population,
+    const std::vector<std::vector<double>>& weights){
+        calculate_fitness(population, weights);
+    }
 
 // (3) Nova Geração
 
@@ -49,16 +48,18 @@ std::vector<std::vector<int>> generate_initial_population(const IGraph<Node> &gr
 // Note: não é template porque o tipo de nó não é necessário aqui
 void improve_population(
     const std::vector<std::vector<double>> &weights,
-    std::vector<std::vector<int>> &population,
+    std::vector<Individual>& population,
     LocalSearchMethod method,
     ImprovementType improvement)
 {
 
     for (auto &individual : population)
     {
-        LocalSearchResult improved = local_search(weights, individual,
+        LocalSearchResult improved = local_search(weights, individual.path,
                                                   method, improvement);
-        individual = improved.solution;
+        individual.path = improved.solution;
+        individual.cost = improved.cost;
+        individual.fitness = 1 / improved.cost;
     }
 };
 
@@ -73,13 +74,13 @@ bool end_search(
 };
 
 template <typename Node>
-MemeticSolution memetic_search(const IGraph<Node> &graph,
+TSPResult memetic_search(const IGraph<Node> &graph,
                                const std::vector<std::vector<double>> &weights,
                                Node start_node)
 {
 
     // Gera população inicial usando heurísticas
-    std::vector<std::vector<int>> population = generate_initial_population(graph, weights, start_node);
+    std::vector<std::vector<int>> population = generate_initial_population(graph, weights);
 
     improve_population(weights, population, LocalSearchMethod::INVERT, ImprovementType::BEST_IMPROVEMENT);
 }

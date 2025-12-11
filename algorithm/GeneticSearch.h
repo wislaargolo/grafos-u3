@@ -285,6 +285,21 @@ std::vector<int> genetic_search(const IGraph<Node>& graph,
     std::vector<int> best_solution;
 
     for (int i = 0; i < MAX_ITERATIONS_NUMBER; i++) {
+
+        std::vector<double> fitness_scores(population.size());
+
+        // Verifica fitness e atualiza melhor solução
+        for (size_t k = 0; k < population.size(); k++) {
+            double current_cost = calculate_path_cost(weights, population[k]);
+            fitness_scores[k] = 1.0 / current_cost;
+
+            if (current_cost < best_solution_cost) {
+                best_solution_cost = current_cost;
+                best_solution = population[k];
+                stagnant_count = 0; // Se houve melhoria, reseta o contador de estagnação
+            }
+        }
+
         int parent_a_index = select_random_parent(fitness_scores);
         int parent_b_index = select_random_parent(fitness_scores);
 
@@ -292,11 +307,24 @@ std::vector<int> genetic_search(const IGraph<Node>& graph,
             parent_b_index = (parent_b_index + 1) % population.size();
         }
 
-        // cruzamento, mutação, renovação
+        // Cruzamento por crossover
+        std::vector<int> child1 = ordered_crossover(population[parent_a_index], population[parent_b_index]);
+        std::vector<int> child2 = ordered_crossover(population[parent_b_index], population[parent_a_index]);
+
+        // Mutação com taxa de 50%
+        apply_mutation(child1, 0.5);
+        apply_mutation(child2, 0.5);
+
+        std::vector<std::vector<int>> offsprings = {child1, child2};
+
+        // Renovação da população com elitismo
+        population = renovation_elitism(population, offsprings, weights);
 
         if (stagnant_count > MAX_STAGNANT_ITERATIONS_NUMBER) {
             break;
         }
+
+        stagnant_count++; // Se não houve melhoria, incrementa o contador de estagnação
     }
 
     return best_solution;
